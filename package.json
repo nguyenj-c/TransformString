@@ -1,0 +1,7 @@
+{
+  "name": "TransformAscii",
+  "version": "1.0.0",
+  "dependencies": {
+    "use-clipboard-copy": "^0.2.0"
+  }
+}
