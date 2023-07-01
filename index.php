@@ -13,18 +13,25 @@ echo '
 	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	    <script src="js/jQuery.js"></script>
     	<script src="js/main.js"></script>
-        <title>Transformer en art ASCII</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+        <title>TransformString</title>
     </head>
-    <div><h1><a href="X" class="title">Transformer en art ASCII</a></h1></<div>
+    <div><h1><a href="X" class="title">TransformString</a></h1></<div>
 </div>
         <form id="Form" action="" method="POST" style="display: block;">
-           <label for="stringToTransform" style="margin: 10%%;">Entrer une phrase à transformer</label>
+           <label for="stringToTransform">➡ Ascii Art</label>
            <input type="text" name="stringToTransform" id="stringToTransform" min="1" placeholder="I love PHP 8">
-           <input type="submit" value="Envoyer">
+           <input type="submit" class="button" value="Envoyer">
          </form>
-        <div id="paste">    
+         <section>
+            <label for="urlToConvert">➡ QR-Code</label>
+            <input type="text" name="urlToConvert" id="urlToConvert" autocomplete="off" placeholder="https://github.com/nguyenj-c">
+            <button class="button" id="actionBtn" onclick={generateQRCode()}>Generate QR Code</button>
+        </section>
+        <div id="paste">  
             <button id="bouton" onclick={copyAscii()}><i class="fa fa-copy"></i></button>
         </div>
+        <div class="qr-code" style="display: none;"></div>
         <pre id="message">
         ' . $asciiArt .'
         </pre>
