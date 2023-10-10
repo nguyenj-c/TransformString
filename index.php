@@ -1,6 +1,19 @@
-<?php
-include "asciiArt.php";
+<?php declare(strict_types=1);
 
+require_once "vendor/autoload.php";
+include "asciiArt.php";
+include "BitlyShortener.php";
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->safeLoad();
+
+function shorten(string $url) : string
+{
+    $bitly = new BitlyShortener($_ENV['BITLY_TOKEN']);
+    return $bitly->shortenUrl($url);
+}
+
+$shortenUrl = isset($_POST['bitlyShortener']) ? shorten($_POST['bitlyShortener']) : null;
 $asciiArt = isset($_POST['stringToTransform']) ? showAsciiArt($_POST['stringToTransform']) : "";
 echo '
 <!doctype html>
@@ -28,11 +41,20 @@ echo '
             <input type="text" name="urlToConvert" id="urlToConvert" autocomplete="off" placeholder="https://github.com/nguyenj-c">
             <button class="button" id="actionBtn" onclick={generateQRCode()}>Generate QR Code</button>
         </section>
+        <section>
+         <form id="Form" action="" method="POST" style="display: block;">
+           <label for="bitlyShortener">➡ Shorten Url</label>
+           <input type="text" name="bitlyShortener" id="bitlyShortener" min="1" placeholder="https://github.com/nguyenj-c?tab=repositories">
+           <input type="submit" class="button" value="Shorten Url">
+        </section>
         <div id="paste">  
             <button id="bouton" onclick={copyAscii()}><i class="fa fa-copy"></i></button>
         </div>
-        <div class="qr-code" style="display: none;"></div>
-        <pre id="message">
+        <div class="qr-code" style="display: none;"></div>.';
+    if ($shortenUrl !== null) {
+        echo '<div class="bitly-url"> ' . $shortenUrl . '</div >';
+    }
+    echo '<pre id="message">
         ' . $asciiArt .'
         </pre>
     </body>

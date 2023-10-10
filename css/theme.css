@@ -84,3 +84,8 @@ section{
     height: 100%;
     text-decoration: none;
 }
+
+.bitly-url{
+    display: flex;
+    justify-content: center;
+}
