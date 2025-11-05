@@ -57,15 +57,18 @@ function generate(user_input){
     download.appendChild(download_link);
 
     // Use requestAnimationFrame instead of arbitrary timeout
+    // QRCode library renders asynchronously, so we need to wait for next frame
     requestAnimationFrame(() => {
-        const qrImg = qrCodeContainer.querySelector("img");
-        const canvas = qrCodeContainer.querySelector("canvas");
-        
-        if (qrImg && qrImg.getAttribute("src")) {
-            download_link.setAttribute("href", qrImg.getAttribute("src"));
-        } else if (canvas) {
-            download_link.setAttribute("href", canvas.toDataURL());
-        }
+        requestAnimationFrame(() => {
+            const qrImg = qrCodeContainer.querySelector("img");
+            const canvas = qrCodeContainer.querySelector("canvas");
+            
+            if (qrImg && qrImg.getAttribute("src")) {
+                download_link.setAttribute("href", qrImg.getAttribute("src"));
+            } else if (canvas) {
+                download_link.setAttribute("href", canvas.toDataURL());
+            }
+        });
     });
 }
 

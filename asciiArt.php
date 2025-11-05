@@ -16,11 +16,7 @@ function showAsciiArt(string $stringToTransform) : string
         $asciiArtFormatter = explode("\n", $letter);
         $lineCount = count($asciiArtFormatter) - 1;
         for ($i = 0; $i < $lineCount; $i += 1) {
-            if (array_key_exists($i, $tabAsciiArtLines)) {
-                $tabAsciiArtLines[$i] .= $asciiArtFormatter[$i];
-            } else {
-                $tabAsciiArtLines[$i] = $asciiArtFormatter[$i];
-            }
+            $tabAsciiArtLines[$i] = ($tabAsciiArtLines[$i] ?? '') . $asciiArtFormatter[$i];
         }
     }
 
