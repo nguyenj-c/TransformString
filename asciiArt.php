@@ -14,18 +14,18 @@ function showAsciiArt(string $stringToTransform) : string
 
     foreach ($asciiArt as $letter) {
         $asciiArtFormatter = explode("\n", $letter);
-        for ($i = 0; $i < count($asciiArtFormatter) -1; $i += 1) {
-            array_key_exists($i,$tabAsciiArtLines) ?
-                $tabAsciiArtLines[$i] .= $asciiArtFormatter[$i] :
+        $lineCount = count($asciiArtFormatter) - 1;
+        for ($i = 0; $i < $lineCount; $i += 1) {
+            if (array_key_exists($i, $tabAsciiArtLines)) {
+                $tabAsciiArtLines[$i] .= $asciiArtFormatter[$i];
+            } else {
                 $tabAsciiArtLines[$i] = $asciiArtFormatter[$i];
+            }
         }
     }
 
-    $asciiArtResult = "";
-    foreach ($tabAsciiArtLines as $asciiArtLine) {
-        $asciiArtResult .= $asciiArtLine . "\n";
-    }
-    return $asciiArtResult;
+    // Use implode instead of string concatenation in loop
+    return implode("\n", $tabAsciiArtLines) . "\n";
 }
 function formatToAsciiArt(string $letter) : string
 {
