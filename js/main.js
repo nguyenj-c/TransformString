@@ -11,6 +11,16 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    const input = document.getElementById('stringToTransform');
+    const submitBtn = document.querySelector('input[type="submit"][value="Envoyer"]');
+    submitBtn.disabled = true;
+
+    input.addEventListener('input', function() {
+        submitBtn.disabled = input.value.trim() === '';
+    });
+});
+
 function copyAscii() {
     let textToCopy = document.getElementById('message').innerText;
     if (navigator.clipboard) {

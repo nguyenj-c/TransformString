@@ -21,7 +21,7 @@ echo '
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     	<link href="css/theme.css" rel="stylesheet" type="text/css" media="all"/>
-        <link rel="icon" href="../img/ascii.png" sizes="20x20">
+        <link rel="icon" href="/img/ascii.png" sizes="20x20">
 	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	    <script src="js/jQuery.js"></script>
     	<script src="js/main.js"></script>
@@ -45,6 +45,7 @@ echo '
            <label for="bitlyShortener">➡ Shorten Url</label>
            <input type="text" name="bitlyShortener" id="bitlyShortener" min="1" placeholder="https://github.com/nguyenj-c?tab=repositories">
            <input type="submit" class="button" value="Shorten Url">
+         </form>
         </section>
         <div id="paste">  
             <button id="bouton"><i class="fa fa-copy"></i></button>
